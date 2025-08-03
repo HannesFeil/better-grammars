@@ -50,10 +50,14 @@ public class RandomGrammarTest {
         adaptiveRuleProbModel = new AdaptiveRuleProbModel(rnagrammar);
         ArithmeticDecoder arithmeticDecoder = new ExactArithmeticDecoder(encodedBitsAdaptive);
 
+        // GenericRNADecoder decoder =
+        //         new GenericRNADecoder(
+        //                 adaptiveRuleProbModel, arithmeticDecoder,
+        //                 rnagrammar, rnagrammar.getStartSymbol()); FIXME: I made this compile, probably wrong?
         GenericRNADecoder decoder =
                 new GenericRNADecoder(
                         adaptiveRuleProbModel, arithmeticDecoder,
-                        rnagrammar, rnagrammar.getStartSymbol());
+                        rnagrammar.getStartSymbol());
 
         RNAWithStructure decoded = decoder.decode();
 

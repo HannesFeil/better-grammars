@@ -35,13 +35,15 @@ public class SampleInstance4Tests {
     public void runEncodeNDecodeStatic(RNAWithStructure rnaws, TrainingDataset tDataset) throws IOException {
         //Encoding
         ArithmeticEncoder AE = new ExactArithmeticEncoder();
-        RuleProbModel RPMStatic = new StaticRuleProbModel(G.getGrammar(), G.readRuleProbs(tDataset.getRuleProbsForGrammar(G)));
+        // RuleProbModel RPMStatic = new StaticRuleProbModel(G.getGrammar(), G.readRuleProbs(tDataset.getRuleProbsForGrammar(G))); FIXME: I made this compile, probably wrong?
+        RuleProbModel RPMStatic = new StaticRuleProbModel(G.getGrammar(), G.readRuleProbs(tDataset.ruleProbsFileFor(G)));
         GenericRNAEncoder GRAStatic = new GenericRNAEncoder(RPMStatic, AE, G.getGrammar(), G.getStartSymbol());
         String encodedStringStatic = GRAStatic.encodeRNA(rnaws);
 
         //Decoding
         ExactArithmeticDecoder AD = new ExactArithmeticDecoder(encodedStringStatic);
-        GenericRNADecoder GRAD = new GenericRNADecoder(RPMStatic, AD, G.getGrammar(), G.getStartSymbol());
+        // GenericRNADecoder GRAD = new GenericRNADecoder(RPMStatic, AD, G.getGrammar(), G.getStartSymbol()); FIXME: I made this compile, probably wrong?
+        GenericRNADecoder GRAD = new GenericRNADecoder(RPMStatic, AD, G.getStartSymbol());
         RNAWithStructure decoded = GRAD.decode();
 
         Assert.assertEquals(rnaws, decoded);
@@ -57,7 +59,8 @@ public class SampleInstance4Tests {
         //Decoding
         RPMAdaptive = new AdaptiveRuleProbModel(G.getGrammar());//resets the Model
         ExactArithmeticDecoder AD = new ExactArithmeticDecoder(encodedStringAdaptive);
-        GenericRNADecoder GRAD = new GenericRNADecoder(RPMAdaptive, AD, G.getGrammar(), G.getStartSymbol());
+        // GenericRNADecoder GRAD = new GenericRNADecoder(RPMAdaptive, AD, G.getGrammar(), G.getStartSymbol()); FIXME: I made this compile, probably wrong?
+        GenericRNADecoder GRAD = new GenericRNADecoder(RPMAdaptive, AD, G.getStartSymbol());
         RNAWithStructure decoded = GRAD.decode();
 
         Assert.assertEquals(rnaws, decoded);
@@ -65,13 +68,15 @@ public class SampleInstance4Tests {
     public void runEncodeNDecode4SemiAdaptive(RNAWithStructure rnaws){
         //Encoding
         ArithmeticEncoder AE = new ExactArithmeticEncoder();
-        RuleProbModel RPMSemiAdaptive = new SemiAdaptiveRuleProbModel(G.getGrammar(), G.getStartSymbol(), rnaws);
+        // RuleProbModel RPMSemiAdaptive = new SemiAdaptiveRuleProbModel(G.getGrammar(), G.getStartSymbol(), rnaws); FIXME: I made this compile, probably wrong?
+        RuleProbModel RPMSemiAdaptive = new SemiAdaptiveRuleProbModel(G.getGrammar(), rnaws);
         GenericRNAEncoder GRASemiAdaptive = new GenericRNAEncoder(RPMSemiAdaptive, AE, G.getGrammar(), G.getStartSymbol());
         String encodedStringStatic = GRASemiAdaptive.encodeRNA(rnaws);
 
         //Decoding
         ExactArithmeticDecoder AD = new ExactArithmeticDecoder(encodedStringStatic);
-        GenericRNADecoder GRAD = new GenericRNADecoder(RPMSemiAdaptive, AD, G.getGrammar(), G.getStartSymbol());
+        // GenericRNADecoder GRAD = new GenericRNADecoder(RPMSemiAdaptive, AD, G.getGrammar(), G.getStartSymbol()); FIXME: I made this compile, probably wrong?
+        GenericRNADecoder GRAD = new GenericRNADecoder(RPMSemiAdaptive, AD, G.getStartSymbol());
         RNAWithStructure decoded = GRAD.decode();
 
         Assert.assertEquals(rnaws, decoded);

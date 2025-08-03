@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 import compression.GenericRNADecoder;
 import compression.GenericRNAEncoder;
 import compression.LocalConfig;
@@ -44,9 +43,9 @@ public class Encode_N_Decode_CorrectlyTest {
     boolean withNonCanonicalRules = true;
     boolean withHairpinLengthOne = true;
     List<SampleGrammar> listOfGrammars = Arrays.asList(
-            new DowellGrammar1Bound(withNonCanonicalRules)
-    );
+            new DowellGrammar1Bound(withNonCanonicalRules));
 
+    // FIXME: I'm not sure right now what these files should be
     @Test
     public void testEncodeNDecode4AutoGenGrammars() throws IOException {
         List<SecondaryStructureGrammar> listOfGrammars = new ArrayList<>();
@@ -81,7 +80,8 @@ public class Encode_N_Decode_CorrectlyTest {
             //Decoding
             AdaptiveRuleProbModel RPMAdaptive4decode = new AdaptiveRuleProbModel(g);//reset probability model
             ExactArithmeticDecoder AD = new ExactArithmeticDecoder(encodedStringAdaptive);
-            GenericRNADecoder GRAD = new GenericRNADecoder(RPMAdaptive4decode, AD, g, g.getStartSymbol());
+            // GenericRNADecoder GRAD = new GenericRNADecoder(RPMAdaptive4decode, AD, g, g.getStartSymbol()); FIXME: I made this compile, probably wrong?
+            GenericRNADecoder GRAD = new GenericRNADecoder(RPMAdaptive4decode, AD, g.getStartSymbol());
             RNAWithStructure decoded = GRAD.decode();
 
             Assert.assertEquals(rnaws, decoded);
