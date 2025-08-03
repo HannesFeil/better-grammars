@@ -73,6 +73,7 @@ public class GrammarReaderNWriterTest extends TestCase {
         System.out.println(simpleGrammar1.toString());
         //assertEquals(simpleGrammar1.toString(),simpleGrammar2.toString());
         assertEquals(simpleGrammar1.toString(),newGrammar.getGrammarFromFile().toString());
+        newGrammar.getFileName().delete();
         }
 
 }
