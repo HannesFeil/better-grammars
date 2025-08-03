@@ -3,5 +3,36 @@
  */
 
 plugins {
-    id("buildlogic.java-library-conventions")
+    // Apply the java Plugin to add support for Java.
+    java
+    application
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit Jupiter for testing.
+    testImplementation("org.junit.vintage:junit-vintage-engine:5.13.4")
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.named<Test>("test") {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = "compression.Compressions"
 }
