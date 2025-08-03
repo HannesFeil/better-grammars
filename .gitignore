@@ -25,3 +25,14 @@ replay_pid*
 
 # Direnv cache files
 .direnv
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+# Ignore jdtls generated files
+.classpath
+**/.settings/org.eclipse.buildship.core.prefs
+.project
