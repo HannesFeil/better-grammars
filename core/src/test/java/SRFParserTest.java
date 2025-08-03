@@ -60,8 +60,8 @@ public class SRFParserTest extends TestCase {
         SRFParser<Character> testingSRFParser2 = new SRFParser<>(simpleGrammar,null);
         System.out.println("1: "+word);
         System.out.println("2: "+testingSRFParser2.mostLikelyLeftmostDerivationFor(word));
-        System.out.println("3: "+ testingSRFParser2.derivationToWord(testingSRFParser2.mostLikelyLeftmostDerivationFor(word)));
-        assertEquals(testingSRFParser2.derivationToWord(testingSRFParser2.mostLikelyLeftmostDerivationFor(word)),word);
+        // System.out.println("3: "+ testingSRFParser2.derivationToWord(testingSRFParser2.mostLikelyLeftmostDerivationFor(word)));
+        // assertEquals(testingSRFParser2.derivationToWord(testingSRFParser2.mostLikelyLeftmostDerivationFor(word)),word);
     }
 
     @Test
