@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
+    testImplementation("org.junit.vintage:junit-vintage-engine:5.13.4")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
