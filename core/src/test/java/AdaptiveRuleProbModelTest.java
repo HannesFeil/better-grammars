@@ -43,19 +43,19 @@ public class AdaptiveRuleProbModelTest extends TestCase {
 		Set<NonTerminal> nonTerminals = G.getNonTerminals();
 //		System.out.println("nonTerminals = " + nonTerminals);
 		NonTerminal S = NonTerminal.of("S");
-		NonTerminal T = NonTerminal.of("T");
+		NonTerminal L = NonTerminal.of("L");
 		Assert.assertTrue(nonTerminals.contains(S));
-		Assert.assertTrue(nonTerminals.contains(T));
+		Assert.assertTrue(nonTerminals.contains(L));
 		Assert.assertTrue(G.containsRules(S));
-		Assert.assertTrue(G.containsRules(T));
+		Assert.assertTrue(G.containsRules(L));
 
 		Rule[] SRules = G.getRules(S).toArray(Rule[]::new);
-		Rule[] TRules = G.getRules(T).toArray(Rule[]::new);
+		Rule[] LRules = G.getRules(L).toArray(Rule[]::new);
 		Assert.assertEquals(2, SRules.length);
-		Assert.assertEquals(10, TRules.length);
+		Assert.assertEquals(10, LRules.length);
 
 		System.out.println("SRules = " + Arrays.toString(SRules));
-		System.out.println("TRules = " + Arrays.toString(TRules));
+		System.out.println("TRules = " + Arrays.toString(LRules));
 
 		AdaptiveRuleProbModel model = new AdaptiveRuleProbModel(G, scale);
 
@@ -72,17 +72,17 @@ public class AdaptiveRuleProbModelTest extends TestCase {
 		// Should see rule 0 mapped to [0,4/7)
 		Assert.assertEquals(new BigDecimalInterval(BigDecimal.ZERO, fractionWithScale(4, 7, scale)), I);
 
-		I = model.getIntervalFor(TRules[6]);
+		I = model.getIntervalFor(LRules[6]);
 		Assert.assertEquals(new BigDecimalInterval(6.0/10, 1.0/10), I);
-		I = model.getIntervalFor(TRules[6]);
+		I = model.getIntervalFor(LRules[6]);
 		Assert.assertEquals(new BigDecimalInterval(
 				fractionWithScale(6,11,scale),
 				fractionWithScale(2,11,scale)), I);
-		I = model.getIntervalFor(TRules[6]);
+		I = model.getIntervalFor(LRules[6]);
 		Assert.assertEquals(new BigDecimalInterval(
 				fractionWithScale(6,12,scale),
 				fractionWithScale(3,12,scale)), I);
-		I = model.getIntervalFor(TRules[6]);
+		I = model.getIntervalFor(LRules[6]);
 		Assert.assertEquals(new BigDecimalInterval(
 				fractionWithScale(6,13,scale),
 				fractionWithScale(4,13,scale)), I);
